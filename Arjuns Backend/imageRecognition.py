@@ -8,7 +8,7 @@ import datetime
 
 current_time = datetime.datetime.now()
 
-image = cv2.imread('Letest.jpg')
+image = cv2.imread('exp.jpg')
 
 # get grayscale image
 def get_grayscale(image):
@@ -17,7 +17,7 @@ def get_grayscale(image):
 # noise removal
 def remove_noise(image):
     return cv2.medianBlur(image,5)
- 
+
 #thresholding
 def thresholding(image):
     return cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
@@ -81,8 +81,8 @@ n_boxes = len(d['text'])
 for i in range(n_boxes):
     if float(d['conf'][i]) > 60.0:
         if re.match(date_pattern, d['text'][i]):
-           dates[j]=d['text'][i]
-           j=j+1
+            dates[j]=d['text'][i]
+            j=j+1
 
 if j==1:
     dates[1]=str(current_time.day)+'/'+str(current_time.month)+'/'+str(current_time.year)
