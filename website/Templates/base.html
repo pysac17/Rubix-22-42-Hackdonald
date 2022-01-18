@@ -2,25 +2,26 @@
     <html lang="en">
     <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./Design/logInDesign.css">
 
-    <title>{% block title %}abc{% endblock %}</title>
+    <title>{% block title %}trial{% endblock %}</title>
     </head>
-    <body> 
+    <body style="background-color:rgba(245, 223, 187, 1);"> 
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Goldman&family=Rum+Raisin&family=Scada&family=Scheherazade+New&family=Schoolbell&display=swap');        </style>
-
-        <style></style>
-        <nav class="navbar navbar-expand-lg navbar-light ">
+            @import url('https://fonts.googleapis.com/css2?family=Goldman&family=Happy+Monkey&family=IM+Fell+Great+Primer+SC&family=Rum+Raisin&family=Scada&family=Scheherazade+New&family=Schoolbell&display=swap');
+        </style>        
+    <div style="background-color:rgba(245, 223, 187, 1)">
+        <nav class="navbar navbar-expand-lg navbar-light " >
             <a class="navbar-brand" href="/" style="font-family: Rum Raisin;">
-                <img src = "/static/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                <img src = "/static/logo.png" width="30" height="30" class="d-inline-block align-top" alt="img">
                 KeepItFresh
-            </a>            
+            </a> 
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,7 +31,7 @@
                     <a class="nav-link" href="/" style="font-family: Scada">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/dashboard" style="font-family: Scada">Dashboard</a>
+                    <a class="nav-link" href="/dashboard" style="font-family: Scada;">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/recipe" style="font-family: Scada">Recipe</a>
@@ -41,19 +42,22 @@
                 </ul>
                 <span class="navbar-item">
                     <div class="btn-group" role="group" aria-label="login_signup">
-                        <a class="btn btn-primary btn-mb" href="/login" role="button" style="font-family: Goldman; background:rgba(109, 178, 156, 1); ">Login </a>                        
-                        <a class="btn btn-secondary btn-mb" href="/signUp" role="button" style="font-family: Goldman; background:rgba(244, 154, 116, 1)">SignUp</a>
+                        <a class="btn btn-primary btn-sm" href="/login" role="button" style="font-family: Goldman; background:rgba(109, 178, 156, 1); ">Login </a>                        
+                        <a class="btn btn-secondary btn-sm" href="/signUp" role="button" style="font-family: Goldman; background:rgba(244, 154, 116, 1)">SignUp</a>
                     </div>
                 </span>
             </div>
         </nav>
+    </div>
 
+    {% block content %}{% endblock %}
+    
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-        <script type="text/javascript" src = "{{ url_for('static' , filename='index.js') }}" </script>
-    </body>
+        <script type=".javascript" src = "{{ url_for('static' , filename='index.js') }}" </script>
+        </body>
     </html>
