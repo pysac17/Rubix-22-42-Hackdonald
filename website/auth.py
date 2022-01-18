@@ -17,3 +17,8 @@ def expiry():
 @auth.route('/signUp')
 def signUp():
     return render_template("signUp.html")
+
+@auth.route('/')
+def logout():
+    return render_template("home.html")
+

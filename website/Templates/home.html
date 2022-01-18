@@ -1,2 +1,20 @@
 {% extends "base.html" %} 
-{% block title %}Home{% endblock %} 
+{% block title %}Home{% endblock %}
+
+<div class="container" style="width:100%; padding:0%">
+{% block content %}
+
+<div class="card bg-rgba(245, 223, 187, 1) border-0" >
+    <img class="card-img" src="/static/homeback.png" alt="Card image" style="width:100%; border:0ch">
+        <div class="card-img-overlay">
+            <div class="card-body" style="max-width:40%; padding-left: 0%; text-align:center">
+                <h1 class="card-title" style=" font-family: IM FELL Great Primer SC; font-size: 6vw;">Still throwing away expired products?</h1>
+                <p class="card-text" style="font-family:Happy Monkey; font-size: 2vw;">Reducing food loss and waste is essential in a world where millions of people go hungry every day.</p>
+                    <div class="btn-sm" role="group" aria-label="login_signup">
+                        <a class="btn btn-primary btn-sm" href="/login" role="button" style="font-family:Happy Monkey; background:rgba(18, 116, 117, 1); font-size:small; width:100%">Try It Now</a>                     
+                        <a class="btn btn-secondary btn-sm" href="/recipe" role="button" style="font-family:Happy Monkey; background:rgba(242, 84, 45, 1); font-size:small; width:100%">Recipe</a>
+                    </div>
+        </div>
+        </div>
+{% endblock %}
+</div>
