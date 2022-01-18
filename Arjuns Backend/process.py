@@ -1,6 +1,6 @@
 import json
 
-opens=open(r"C:\Users\arjun\Desktop\rizfood (1).json")
+opens=open(r"Arjuns Backend\rizfood (1).json")
 reads=opens.read()
 loads=json.loads(reads)
 
