@@ -21,6 +21,28 @@
             @import url('https://fonts.googleapis.com/css2?family=Goldman&family=Rum+Raisin&family=Scheherazade+New&family=Schoolbell&display=swap');
         </style>
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% else %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    <form method="post">
         <div class="card img-fluid border-0" style="width: 100% ;padding: 0px; ">
             <div class="view" style="background-image: url('/static/backgroung.png'); background-repeat: no-repeat; background-size: cover; background-position: center;padding: 0%;">
                 <div class="card card-image-overlay border-0" src="/static/ls.png";"></div>
@@ -38,27 +60,27 @@
                                         <div class="form-group">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label" style="font-family: Scheherazade;">First Name</label>
-                                            <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Ex: John">
+                                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Ex: John">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label" style="font-family: Scheherazade;">Last Name</label>
-                                            <input type="text" class="form-control" id="exampleFormControlInput1" name="lastName" placeholder="Ex: Doe">
+                                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Ex: Doe">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label" style="font-family: Scheherazade;">Email address</label>
-                                            <input type="email" class="form-control" id="exampleFormControlInput1" name="email" placeholder="name@example.com">
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputPassword" class="form-label" style="font-family: Scheherazade;">Password</label>
-                                            <input type="password" class="form-control" id="inputPassword" name="password" placeholder="minimum 7 characters">
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="minimum 7 characters">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="inputPassword" class="form-label" style="font-family: Scheherazade;">confirmPassword</label>
-                                            <input type="password" class="form-control" id="inputPassword" name="password1" placeholder="Confirm Password">
+                                            <label for="inputPassword" class="form-label" style="font-family: Scheherazade;">ConfirmPassword</label>
+                                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Confirm Password">
                                         </div>
                                         <br>
                                         <div class="mb-3">
-                                            <button class="btn btn-primary" type="button" style="width: 100%; background-color: rgba(244, 154, 116, 1); border: 0ch; font-family: goldman; height: 5%; color: black;">Sign Up</button>
+                                            <button class="btn btn-primary" type="submit" style="width: 100%; background-color: rgba(244, 154, 116, 1); border: 0ch; font-family: goldman; height: 5%; color: black;">Sign Up</button>
                                             <br>
                                             <a href="/login" style="text-decoration: none;">
                                             <label for="askSignIn" class="form-label" style="font-family: Scheherazade; ">Already have an account? <a href="/login" style="text-decoration: none;"> <span style="color: rgba(244, 154, 116, 1);" > Sign In </span></a></label>
@@ -73,5 +95,6 @@
                 </div>
             </div>
         </div>
+    </form>
     </body>
 </html>
