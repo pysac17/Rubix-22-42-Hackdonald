@@ -1,4 +1,5 @@
 from flask import Blueprint,render_template, request, flash
+import mysql.connector
 
 auth = Blueprint('auth', __name__)
 
@@ -25,11 +26,6 @@ def signUp():
         password = request.form.get('password')
         password1 = request.form.get('password1')
         
-        print(email)
-        print(firstName)
-        print(password)
-        print(password1)
-        
         if len(email) < 4:
             flash('Enter a valid email!', category = 'error')
         elif len(firstName) < 3:
@@ -39,8 +35,18 @@ def signUp():
         elif len(password) < 8:
             flash('Password must be atleast 8 characters',category='error')
         else:
-            #add user to database
+            mydb = mysql.connector.connect(host="localhost", user="root",passwd="cybereagle0602",database="hax")
+            mycursor=mydb.cursor()
+            mycursor.execute("INSERT INTO temp_users (FIRSTNAME,LASTNAME,EMAIL,PASSWORD) VALUES (%s,%s,%s,%s)",(firstName,lastName,email,password))
+            mydb.commit()
+
+            mycursor.execute("SELECT * FROM temp_users")
+            for i in mycursor:
+                print(i)
+
+            
             flash('Account created!',category='success')
+
             
     return render_template("signUp.html")
 
