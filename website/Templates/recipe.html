@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+{% block title %}Recipe{% endblock %} 
+
+<div class="container" style="width:100%;">
+    {% block content %}
+
+    <div class="input-group row" style="margin-left: 10%;width:100%; margin-right:10%; margin-top:3%">
+        <div id="search-autocomplete" class="form-outline" style="width: 70%;">
+            <input type="search" id="form1" class="form-control" placeholder="search" />
+        </div>
+        <button type="button" class="btn btn-primary" style="width: 10%; background-image: url(/static/search-solid.svg) ;background-repeat: no-repeat; background-size: 25px;background-position:center ">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+        
+    <!-- <div class="overflow-hidden">
+        <a href="/recipe"><img src = "/static/logo1.png" width="40" height="40" class="d-inline-block" alt="img" style="margin: 1%; margin-left:92%"></a>
+    </div> -->
+    {% endblock %}
+</div>

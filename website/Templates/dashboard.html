@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+{% block title %}Dashboard{% endblock %} 
+
+
+    <div class="container" style="width:100%; padding:0%">
+        {% block content %}
+        
+                <div class="table-responsive-xl align:center overflow-hidden" >
+                <table class="table table-white w-max table-rgba(184, 204, 177, 1)" style="background-color:rgba(184, 204, 177, 1);font-family:roboto">
+                    <!--Table head-->
+                    <thead>
+                        <tr table-rgba(18, 116, 117, 1)" style="background-color:rgba(18, 116, 117, 1)">
+                        <th>#</th>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Expiry Date</th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+                
+                    <!--Table body-->
+                    <tbody>
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Ketchup</td>
+                        <td>2 bottles</td>
+                        <td>10/12/21</td>
+                        </tr>
+                        <tr>
+                
+                        <th scope="row">2</th>
+                        <td>Bread</td>
+                        <td>1 packet</td>
+                        <td>4/2/21</td>
+                        </tr>
+                
+                        <tr>
+                        <th scope="row">3</th>
+                        <td>Milk</td>
+                        <td>1 litre</td>
+                        <td>22/1/22</td>
+                        </tr>
+                
+                    </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="btn-sm" aria-label="add_remove">
+            <br>
+            <a class="btn btn-primary btn-sm" href="/expiry" role="button" style="font-family:Happy Monkey; background:rgba(18, 116, 117, 1); font-size:small; width:49%; margin-right:1%" >Add</a>                     
+            <a class="btn btn-secondary btn-sm" href="/remove" role="button" style="font-family:Happy Monkey; background:rgba(18, 116, 117, 1); font-size:small; width:49%">Remove</a>
+            <br>
+            <br>
+        </div>
+
+        {% endblock %}
+        </div>
+
