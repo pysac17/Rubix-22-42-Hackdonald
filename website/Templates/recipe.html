@@ -1,14 +1,14 @@
 {% extends "base.html" %} 
 {% block title %}Recipe{% endblock %} 
 
-<div class="container" style="width:100%; padding:0%">
+<div class="container" style="width:100%;">
     {% block content %}
 
-    <div class="input-group row" style="margin-left: 10%;width:100%; margin-right:10%">
+    <div class="input-group row" style="margin-left: 10%;width:100%; margin-right:10%; margin-top:3%">
         <div id="search-autocomplete" class="form-outline" style="width: 70%;">
             <input type="search" id="form1" class="form-control" placeholder="search" />
         </div>
-        <button type="button" class="btn btn-primary" style="width: 10%;">
+        <button type="button" class="btn btn-primary" style="width: 10%; background-image: url(/static/search-solid.svg) ;background-repeat: no-repeat; background-size: 25px;background-position:center ">
             <i class="fas fa-search"></i>
         </button>
     </div>
