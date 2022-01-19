@@ -2,12 +2,10 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
-from flask_login import login_user, login_required, logout_user, current_user, login_manager
+from flask_login import login_user, login_required, logout_user, current_user, login_manager, logout_user
 import mysql.connector
 import re
 
-global emailID 
-emailID = " "
 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
 
 def check(email):   
@@ -37,19 +35,21 @@ def login():
 
     return render_template("logIn.html", user=current_user)
 
-# @auth.route('/logout')
-# @login_required
-# def logout():
-#     logout_user()
-#     return redirect(url_for('auth.login'))
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @auth.route('/dashboard', methods=['GET', 'POST'] )
+@login_required
 def dashboard():
-    return render_template("dashboard.html")
+    return render_template("dashboard.html", user=current_user)
 
 @auth.route('/expiry', methods=['GET', 'POST'])
+@login_required
 def expiry():
-    return render_template("sign_up.html", user=current_user)
+    return render_template("expiry.html", user=current_user)
 
 @auth.route('/signUp', methods=['GET', 'POST'])
 def signUp():
@@ -76,12 +76,6 @@ def signUp():
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.home'), user=current_user)
 
     return render_template("signUp.html", user=current_user)
-
-
-@auth.route('/')
-def logout():
-    return render_template("home.html")
-
