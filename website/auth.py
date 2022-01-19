@@ -1,8 +1,13 @@
-from flask import Blueprint,render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from .models import User
+from werkzeug.security import generate_password_hash, check_password_hash
+from . import db
+from flask_login import login_user, login_required, logout_user, current_user, login_manager
 import mysql.connector
 import re
-from sqlalchemy import true   
 
+global emailID 
+emailID = " "
 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
 
 def check(email):   
@@ -13,51 +18,68 @@ def check(email):
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/login', methods=['GET', 'POST'])
+@auth.route('/login', methods=['GET','POST'])
 def login():
-    data=request.form
-    print(data)
-    return render_template("logIn.html")
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-@auth.route('/dashboard', )
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if check_password_hash(user.password, password):
+                flash('Logged in successfully!', category='success')
+                login_user(user, remember=True)
+                return redirect(url_for('views.home'))
+            else:
+                flash('Incorrect password, try again.', category='error')
+        else:
+            flash('Email does not exist.', category='error')
+
+    return render_template("logIn.html", user=current_user)
+
+# @auth.route('/logout')
+# @login_required
+# def logout():
+#     logout_user()
+#     return redirect(url_for('auth.login'))
+
+@auth.route('/dashboard', methods=['GET', 'POST'] )
 def dashboard():
     return render_template("dashboard.html")
 
-@auth.route('/expiry')
+@auth.route('/expiry', methods=['GET', 'POST'])
 def expiry():
-    return render_template("expiry.html")
+    return render_template("sign_up.html", user=current_user)
 
-@auth.route('/signUp',methods=['GET', 'POST'])
+@auth.route('/signUp', methods=['GET', 'POST'])
 def signUp():
     if request.method == 'POST':
         email = request.form.get('email')
-        firstName = request.form.get('firstName')
-        lastName = request.form.get('lastName')
-        password = request.form.get('password')
-        password1 = request.form.get('password1')
-        
-        if not check(email):
-            flash('Enter a valid email!', category = 'error')
-        elif len(firstName) < 3:
-            flash('First name must be greater than 2 characters',category='error')
-        elif password != password1:
-            flash('Passwords don\'t match',category='error')
-        elif len(password) < 8:
-            flash('Password must be atleast 8 characters',category='error')
+        first_name = request.form.get('firstName')
+        password1 = request.form.get('password')
+        password2 = request.form.get('password1')
+
+        user = User.query.filter_by(email=email).first()
+        if user:
+            flash('Email already exists.', category='error')
+        elif check(email) != True:
+            flash('Invalid email!', category='error')
+        elif len(first_name) < 2:
+            flash('First name must be greater than 1 character.', category='error')
+        elif password1 != password2:
+            flash('Passwords don\'t match.', category='error')
+        elif len(password1) < 7:
+            flash('Password must be at least 7 characters.', category='error')
         else:
-            mydb = mysql.connector.connect(host="localhost", user="root",passwd="1234",database="hax")
-            mycursor=mydb.cursor()
-            mycursor.execute("INSERT INTO temp_users (FIRSTNAME,LASTNAME,EMAIL,PASSWORD) VALUES (%s,%s,%s,%s)",(firstName,lastName,email,password))
-            mydb.commit()
+            new_user = User(email=email, password=generate_password_hash(password1, method='sha256'))
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user, remember=True)
+            flash('Account created!', category='success')
+            return redirect(url_for('views.home'))
 
-            mycursor.execute("SELECT * FROM temp_users")
-            for i in mycursor:
-                print(i)
+    return render_template("signUp.html", user=current_user)
 
-            flash('Account created!',category='success')
-
-            
-    return render_template("signUp.html")
 
 @auth.route('/')
 def logout():

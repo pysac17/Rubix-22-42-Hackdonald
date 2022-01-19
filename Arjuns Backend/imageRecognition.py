@@ -8,7 +8,7 @@ import datetime
 
 current_time = datetime.datetime.now()
 
-image = cv2.imread('exp.jpg')
+image = cv2.imread('Letest.jpg')
 
 # get grayscale image
 def get_grayscale(image):
@@ -65,9 +65,7 @@ opening1 = opening(gray)
 canny1 = canny(gray)
 
 custom_config = r'--oem 3 --psm 6'
-pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
-
-
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 d = pytesseract.image_to_data(canny1, output_type=Output.DICT)
 
 date_pattern = '^([0-9]|0[1-9]|[12][0-9]|3[01])/([0-9]|0[1-9]|1[012])/(2019|202[0-9]|19|2[0-9])\d\d$'
