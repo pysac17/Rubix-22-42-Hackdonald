@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <title>LogIn Page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Design/logInDesign.css">
+</head>
+    <body>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Goldman&family=Rum+Raisin&family=Scheherazade+New&family=Schoolbell&display=swap');
+        </style>
+    <form method="post">  
+        <div class="card img-fluid border-0" style="width: 100% ;padding: 0px; ">
+            <div class="view" style="background-image: url('/static/backgroung.png'); background-repeat: no-repeat; background-size: cover; background-position: center;padding: 0%;">
+                <div class="card card-image-overlay border-0" src="/static/ls.png";></div>
+                    <div class="container">
+                        <div class="card mb-5 card-image-overlay border-0" style="max-width: 1500px; margin-top: 5%; box-shadow: 10%;">
+                            <div class="row g-0">
+                                <div class="col-md-6">
+                                    <img src="/static/ls.png" class="img-fluid rounded-start" alt="image" style="height: 100%;">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                        <h4 class="card-title" style="font-family: Schoolbell; padding-left: 30%;">Welcome Back!</h4>
+                                        <p style="font-family: Scheherazade; padding-left: 10%;">Sign in with your email address and password</p>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label" style="font-family: Scheherazade;">Email address</label>
+                                            <input type="email" class="form-control" id="exampleFormControlInput1" name="email" placeholder="name@example.com">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="inputPassword" class="form-label" style="font-family: Scheherazade;">Password</label>
+                                            <input type="password" class="form-control" id="inputPassword" name="password" placeholder="minimum 7 characters">
+                                        </div>
+                                        <br>
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary" type="submit" style="width: 100%; background-color: rgba(244, 154, 116, 1); border: 0ch; font-family: goldman; height: 5%; color: black;">Login</button>
+                                            <br>
+                                            <a href="/signUp" style="text-decoration: none;">
+                                            <label for="askSignup" class="form-label" style="font-family: Scheherazade; ">Dont have an account? <a href="/signUp" style="text-decoration: none;"> <span style="color: rgba(244, 154, 116, 1);" > Sign Up </span></a></label>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </form>  
+    </body>
+</html>
