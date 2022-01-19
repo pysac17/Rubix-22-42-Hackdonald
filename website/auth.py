@@ -15,8 +15,20 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    data=request.form
-    print(data)
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        mydb = mysql.connector.connect(host="localhost", user="root",passwd="1234",database="hax")
+        mycursor=mydb.cursor()
+        mycursor.execute("SELECT * FROM temp_users WHERE EMAIL = %s AND PASSWORD = %s",(email,password))
+        for i in mycursor:
+            if i == False:
+                return 
+            else:
+                return render_template("dashboard.html")
+        
+        flash('Invalid credentials', category='error')
     return render_template("logIn.html")
 
 @auth.route('/dashboard', )
@@ -25,6 +37,20 @@ def dashboard():
 
 @auth.route('/expiry')
 def expiry():
+    if request.method == 'POST':
+        Product = request.form.get('Name')
+        Quantity = request.form.get('Quantity')
+        expiryDate = request.form.get('expiryDate')
+        uploadFile = request.form.get('uploadFile')
+        
+        mydb = mysql.connector.connect(host="localhost", user="root",passwd="1234",database="hax")
+        mycursor=mydb.cursor()
+        mycursor.execute("INSERT INTO food_db (Name, quanFridge, currExpiry) VALUES (%s,%s,%s)",(Product, Quantity, expiryDate))
+        mydb.commit()
+        mycursor.execute("SELECT * FROM food_db")
+        for i in mycursor:
+            print(i)
+
     return render_template("expiry.html")
 
 @auth.route('/signUp',methods=['GET', 'POST'])
@@ -49,14 +75,13 @@ def signUp():
             mycursor=mydb.cursor()
             mycursor.execute("INSERT INTO temp_users (FIRSTNAME,LASTNAME,EMAIL,PASSWORD) VALUES (%s,%s,%s,%s)",(firstName,lastName,email,password))
             mydb.commit()
-
+            
             mycursor.execute("SELECT * FROM temp_users")
             for i in mycursor:
                 print(i)
 
             flash('Account created!',category='success')
 
-            
     return render_template("signUp.html")
 
 @auth.route('/')
