@@ -1,17 +1,7 @@
-from cgitb import html
-from flask import Blueprint, render_template
-from flask_login import login_required, current_user
 import json
 
-views = Blueprint('views', __name__)
-
-@views.route('/')
-def home():
-    return render_template("home.html", user=current_user)
-
-@views.route('/recipe')
-def recipe():
-    opens=open(r"C:\Users\Sachi\Documents\Hackathons\Rubix22-42-Hackdonald\website\ArjunsBackend\rizfood (1).json")
+def process():
+    opens=open(r"Arjuns Backend\rizfood (1).json")
     reads=opens.read()
     loads=json.loads(reads)
 
@@ -45,4 +35,7 @@ def recipe():
 
     finali = fin.split('.')
     print(finali)
-    return render_template("recipe.html", user=current_user)
+    return finali
+
+
+

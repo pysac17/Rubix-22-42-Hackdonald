@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from .models import User,Table
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user, login_manager, logout_user
@@ -25,14 +25,12 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
             flash('Email does not exist.', category='error')
-
     return render_template("logIn.html", user=current_user)
 
 @auth.route('/logout')
@@ -49,6 +47,15 @@ def dashboard():
 @auth.route('/expiry', methods=['GET', 'POST'])
 @login_required
 def expiry():
+    if request.method == ['POST']:
+        product = request.form.get('product')
+        quantity = request.form.get('quantity')
+        currentDate = '20/1/2022'
+        expiryDate = request.form.get('expiryDate')
+        new_food=Table(product=product,quantity=quantity,currentDate=currentDate, expiryDate= expiryDate)
+        db.session.add(new_food)
+        db.session.commit()
+        flash('Food Added!!', category='success')
     return render_template("expiry.html", user=current_user)
 
 @auth.route('/signUp', methods=['GET', 'POST'])
@@ -65,7 +72,7 @@ def signUp():
         elif check(email) != True:
             flash('Invalid email!', category='error')
         elif len(first_name) < 2:
-            flash('First name must be greater than 1 character.', category='error')
+            flash('First name must be greater than 2 character.', category='error')
         elif password1 != password2:
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
@@ -75,7 +82,6 @@ def signUp():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('Account created!', category='success')
-            return redirect(url_for('views.home'), user=current_user)
+            return redirect(url_for('views.home'))
 
     return render_template("signUp.html", user=current_user)

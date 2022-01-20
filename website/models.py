@@ -11,11 +11,11 @@ class Table(db.Model):
     product = db.Column(db.String(69))
     quantity = db.Column(db.String(69))
     currentDate = db.Column(db.DateTime(timezone=True),default=func.now)
-    expiryDate = db.Column(db.DateTime(timezone=True))
+    expiryDate = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     
 class User(db.Model, UserMixin) :
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(69),unique=True)
     password = db.Column(db.String(150))
-    table = db.relationship('Table')
+    tables = db.relationship('Table')
