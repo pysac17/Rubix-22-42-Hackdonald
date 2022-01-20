@@ -13,7 +13,9 @@
                         <th>#</th>
                         <th>Item Name</th>
                         <th>Quantity</th>
+                        <th>Current Date</th>
                         <th>Expiry Date</th>
+                        <th>Days Left</th>
                         </tr>
                     </thead>
                     <!--Table head-->
@@ -22,37 +24,131 @@
                     <tbody>
                         <tr>
                         <th scope="row">1</th>
-                        <td>Ketchup</td>
-                        <td>2 bottles</td>
-                        <td>10/12/21</td>
+                        <td>Tomato</td>
+                        <td>5</td>
+                        <td>20/1/22</td>
+                        <td>21/1/22</td>
+                        <td style="color:red">1</td>
                         </tr>
+                        
                         <tr>
-                
                         <th scope="row">2</th>
-                        <td>Bread</td>
-                        <td>1 packet</td>
-                        <td>4/2/21</td>
+                        <td>Cheese</td>
+                        <td>3</td>
+                        <td>20/1/22</td>
+                        <td>23/1/22</td>
+                        <td style="color:rgb(255, 255, 0)">3</td>
                         </tr>
                 
                         <tr>
                         <th scope="row">3</th>
-                        <td>Milk</td>
-                        <td>1 litre</td>
-                        <td>22/1/22</td>
+                        <td>Bread</td>
+                        <td>6</td>
+                        <td>20/1/22</td>
+                        <td>26/1/22</td>
+                        <td style="color:rgb(0, 98, 255)">6</td>
                         </tr>
+
+                        <tr>
+                        <th scope="row">4</th>
+                        <td>Chicken</td>
+                        <td>10</td>
+                        <td>20/1/22</td>
+                        <td>26/2/22</td>
+                        <td style="color:rgb(0, 98, 255)">37</td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">5</th>
+                        <td>Ketchup bottles</td>
+                        <td>10</td>
+                        <td>20/1/22</td>
+                        <td>26/3/22</td>
+                        <td style="color:rgb(0, 98, 255)">71</td>
+                        </tr>
+
+                        <!-- <tr>
+                            <th scope="row">6</th>
+                            {% for table in user.tables %}
+                            <td>{{ table.product }}</td>
+                            <td>{{ table.quantity }}</td>
+                            <td>{{ table.currentDate }}</td>
+                            <td>{{ table.expiryDate }}</td>
+                            {% endfor %}
+                        </tr> -->
                 
                     </div>
             </div>
             </div>
         </div>
 
-        <div class="btn-sm" aria-label="add_remove">
-            <br>
-            <a class="btn btn-primary btn-sm" href="/expiry" role="button" style="font-family:Happy Monkey; background:rgba(18, 116, 117, 1); font-size:small; width:49%; margin-right:1%" >Add</a>                     
-            <a class="btn btn-secondary btn-sm" href="/remove" role="button" style="font-family:Happy Monkey; background:rgba(18, 116, 117, 1); font-size:small; width:49%">Remove</a>
-            <br>
-            <br>
+        
+
+        <div class="container">
+            <canvas id="myChart"></canvas>
         </div>
+        <script>
+            let myChart = document.getElementById('myChart').getContext('2d');
+            Chart.defaults.global.defaultFontFamily = 'Lato';
+            Chart.defaults.global.defaultFontSize = 18;
+            Chart.defaults.global.defaultFontColor = '#777';
+            
+
+            let massPopChart = new Chart(myChart, {
+            type:'pie',
+            data:{
+            labels:['tomato', 'cheese', 'bread', 'chicken', 'ketchup bottles'],
+            datasets:[{
+                label:'ingredients',
+                data:[
+                5,
+                3,
+                6,
+                10,
+                10
+                ],
+                //backgroundColor:'green',
+                backgroundColor:[
+                'red',
+                'yellow',
+                'brown',
+                'grey',
+                'orange',
+                'black'
+                ],
+                borderWidth:1,
+                borderColor:'#777',
+                hoverBorderWidth:3,
+                hoverBorderColor:'#000'
+            }]
+            },
+            options:{
+            title:{
+                display:true,
+                text:'Ingredients in Fridge',
+                fontSize:25
+            },
+            legend:{
+                display:true,
+                position:'right',
+                labels:{
+                fontColor:'#000'
+                }
+            },
+            layout:{
+                padding:{
+                left:50,
+                right:0,
+                bottom:0,
+                top:0
+                }
+            },
+            tooltips:{
+                enabled:true
+            }
+            }
+        });
+        </script>
 
         {% endblock %}
         </div>
