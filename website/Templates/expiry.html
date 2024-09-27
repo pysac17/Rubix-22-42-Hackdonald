@@ -8,13 +8,13 @@
     <div class="card bg-rgba(245, 223, 187, 1) border-0 row" >
         <img class="card-img" src="/static/form1.png" alt="Card image" style="width:100%; ">
             <div class="card-img-overlay">
-                <form>
+                <form method="post">
                     <div class="form-group row" style="padding-top:9%;padding-left:5%">
                         <div class="col-4">
                             <label for="formGroupExampleInput" style="padding-top: 3%;" >Product Name:</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" id="Product" name="Product" placeholder="Ketchup">
+                            <input type="text" class="form-control" id="Product" name="product" placeholder="Ketchup">
                         </div>
                     </div>
 
@@ -23,7 +23,7 @@
                             <label for="formGroupExampleInput" style="padding-top: 3%;">Quantity:</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" id="Quantity" name="Quantity" placeholder="1 packet">
+                            <input type="text" class="form-control" id="Quantity" name="quantity" placeholder="1 unit">
                         </div>
                     </div>
 
@@ -45,15 +45,10 @@
                         </div>
                         <div class="col-6">
                             <h4 style="color:white">Upload a picture instead</h4>
-
-                            <input class="file-upload-input" type="file" onchange="readURL (this)" accept="Image/*" id="uploadFile" name="uploadFile">                        </div>
-
-                            <input class="file-upload-input" type="file" onchange="readURL (this)" accept="Image/*" style="">
-
-                            <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="upload a scan of the product"> -->
+                            <input class="file-upload-input" type="file" onchange="readURL (this)" accept="Image/*" id="uploadFile" name="uploadFile">  
                         </div>
                     </div>
-
+    
                     <div class="form-group row" style="padding-left:5%">
                         <div class="col-4">
                         </div>
@@ -63,39 +58,9 @@
                     </div>
                 </form>
             </div>
+            </div>
     </div>
     </div>
-
-    <!-- <div class="overflor-hidden" style="padding-top:3%">
-        <form>
-        <div class="card-body " style="width: 60%; margin-left:20%; margin-right:20%">
-            <h4 class="card-title" style="font-family: Schoolbell; text-align:center">Thankyou for using Keep It Fresh!</h4>
-            <p style="font-family: Scheherazade; text-align:center;">Let us know how you feel about our website</p>
-            <div class="form-group">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label" style="font-family: Scheherazade;">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Ex: John">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label" style="font-family: Scheherazade;">Last Name</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Ex: Doe">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label" style="font-family: Scheherazade;">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label" style="font-family: Scheherazade;">Feedback</label>
-                <input type="textarea" class="form-control" id="feedback" name="feedback" placeholder="feedback">
-            </div>
-            <br>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
-            </div>
-        </div>
-        </div>
-    </form>
-    </div> -->
 
     <div class="overflow-hidden" style="padding:3%">
         <h4 style="font-family: Revalia; text-align:center"> Why are expiration dates important for consumers to pay attention to?
